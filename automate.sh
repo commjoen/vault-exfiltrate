@@ -43,8 +43,8 @@ vault operator unseal $VAULT_UNSEAL_KEY
 
 echo "use consul to get keyring"
 consul members
-consul kv get vault/core/keyring >keyring_binary
-docker cp keyring_binary vault-exfiltrate-vault-1:/keyring_binary 
+consul kv get -base64 vault/core/keyring | base64 -d > keyring_file
+docker cp keyring_file vault-exfiltrate-vault-1:/keyring_file 
 
 echo "preparing payload to get data"
 go mod vendor
