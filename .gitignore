@@ -4,3 +4,4 @@ cluster-keys.json
 commentedroottoken
 root_token
 keyring*
+shamir-kek*
