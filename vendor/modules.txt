@@ -1,9 +1,9 @@
 # github.com/hashicorp/errwrap v1.1.0
 ## explicit
 github.com/hashicorp/errwrap
-# github.com/hashicorp/vault v1.8.1
+# github.com/hashicorp/vault v1.13.2
 ## explicit
 github.com/hashicorp/vault/shamir
-# golang.org/x/exp v0.0.0-20210729172720-737cce5152fc
+# golang.org/x/exp v0.0.0-20220827204233-334a2380cb91
 ## explicit
 golang.org/x/exp/mmap

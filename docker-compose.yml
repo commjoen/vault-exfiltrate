@@ -1,0 +1,23 @@
+services:
+  consul:
+    image: "hashicorp/consul:1.15.1"
+    command: "agent -dev -client 0.0.0.0"
+    environment:
+      - CONSUL_OPTS=-bootstrap-expect=1
+    ports: 
+      - 8500:8500
+  vault:
+    image: "hashicorp/vault:1.13"
+    ports: 
+      - 8200:8200
+    depends_on:
+      - consul
+    cap_add:
+      - IPC_LOCK
+    security_opt: 
+      - systempaths=unconfined
+    volumes:
+      - ./vault:/vault/data
+    environment:
+      VAULT_LOCAL_CONFIG: '{ "storage": {"consul": {"address": "consul:8500", "path": "vault/"}}, "listener": [{"tcp": {"address": "0.0.0.0:8200", "tls_disable": true}}], "default_lease_ttl": "168h", "max_lease_ttl": "720h", "ui": true}'
+    command: "vault server -config /vault/config"

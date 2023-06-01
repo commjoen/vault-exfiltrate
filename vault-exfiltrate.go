@@ -124,7 +124,7 @@ func FindMasterKeyInRegion(coreMap io.ReaderAt, region Region, keyRing []byte) (
 			return plaintext, err
 		}
 	}
-	return nil, fmt.Errorf("key not found")
+	return nil, fmt.Errorf("key not found in FindMasterKeyInRegion")
 }
 
 func FindMasterKeyInCore(corePath string, keyRingPath string) ([]byte, error) {
@@ -150,7 +150,7 @@ func FindMasterKeyInCore(corePath string, keyRingPath string) ([]byte, error) {
 		}
 	}
 
-	return nil, fmt.Errorf("key not found")
+	return nil, fmt.Errorf("key not found in FindMasterKeyInCore")
 }
 
 func FindMasterKeyLive(pidStr string, keyRingPath string) (keyring []byte, err error) {
@@ -181,7 +181,7 @@ func FindMasterKeyLive(pidStr string, keyRingPath string) (keyring []byte, err e
 		}
 	}
 
-	return nil, fmt.Errorf("key not found")
+	return nil, fmt.Errorf("key not found in FindMasterKeyLive")
 }
 
 func deserializeKeyring(keyRingFile string) (*vault_components.Keyring, error) {

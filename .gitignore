@@ -1,2 +1,6 @@
 *.swp
 vault-exfiltrate
+cluster-keys.json
+commentedroottoken
+root_token
+keyring*
