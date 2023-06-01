@@ -12,10 +12,12 @@ services:
       - 8200:8200
     depends_on:
       - consul
+    privileged: true
     cap_add:
       - IPC_LOCK
     security_opt: 
       - systempaths=unconfined
+      - seccomp:unconfined
     volumes:
       - ./vault:/vault/data
     environment:
