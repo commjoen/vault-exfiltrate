@@ -2,7 +2,7 @@ vault-exfiltrate
 ================
 
 This is an automated setup (WIP) based on [vault-exfiltrate](https://github.com/slingamn/vault-exfiltrate). 
-Use `./automate.sh` to trigger the processes. Work in progress & only tested on MacOS.
+Use `./automate.sh` to trigger the processes.
 
 Still stuck? try replacing /vault/core
 

