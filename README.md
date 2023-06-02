@@ -4,6 +4,8 @@ vault-exfiltrate
 This is an automated setup (WIP) based on [vault-exfiltrate](https://github.com/slingamn/vault-exfiltrate). 
 Use `./automate.sh` to trigger the processes. Work in progress & only tested on MacOS.
 
+Still stuck? try replacing /vault/core
+
 ### Original readme
 
 `vault-exfiltrate` is a proof-of-concept for extracting the AES master and session keys from an unsealed [Hashicorp Vault](https://www.vaultproject.io/) process, or from a core dump of one.
